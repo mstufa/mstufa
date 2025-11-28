@@ -15,7 +15,6 @@
             overflow: hidden;
         }
 
-        /* كارت الشات الرئيسي */
         .chat-card {
             width: 100%; max-width: 450px; height: 95vh;
             background: rgba(255, 255, 255, 0.6);
@@ -27,10 +26,8 @@
             position: relative; overflow: hidden;
         }
 
-        /* شريط الغرف العلوي */
         .rooms-bar {
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.8);
+            padding: 10px; background: rgba(255, 255, 255, 0.8);
             display: flex; gap: 10px; overflow-x: auto;
             border-bottom: 1px solid rgba(255, 182, 193, 0.3);
             scrollbar-width: none;
@@ -39,49 +36,49 @@
             padding: 8px 16px; border: none; border-radius: 20px;
             background: #fff0f5; color: #ff6b6b;
             font-weight: bold; cursor: pointer; white-space: nowrap;
-            transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: 0.3s;
         }
         .room-btn.active {
             background: #ff6b6b; color: white;
             box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
         }
 
-        /* رأس الشات */
         .chat-header {
             padding: 15px; text-align: center;
             background: rgba(255, 255, 255, 0.5);
         }
-        .chat-header h2 {
-            margin: 0; color: #d63384; font-size: 20px; /* كبرت الخط شوية */
-        }
-        .current-room-name {
-            font-size: 12px; color: #666; margin-top: 5px;
-        }
+        .chat-header h2 { margin: 0; color: #d63384; font-size: 20px; }
+        .current-room-name { font-size: 12px; color: #666; margin-top: 5px; }
 
-        /* منطقة الرسائل */
         .chat-body {
             flex: 1; padding: 20px; overflow-y: auto;
             display: flex; flex-direction: column; gap: 15px;
         }
 
-        /* تصميم الرسالة */
         .message-row { display: flex; align-items: flex-end; gap: 10px; }
         
+        .msg-container {
+            display: flex; flex-direction: column; max-width: 80%;
+        }
+
+        .msg-name {
+            font-size: 10px; color: #888; margin-bottom: 3px; font-weight: bold;
+        }
+
         .msg-content {
             padding: 12px 18px; border-radius: 20px; font-size: 15px;
             line-height: 1.5; position: relative;
-            max-width: 80%; word-wrap: break-word;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); word-wrap: break-word;
         }
 
-        /* رسالتي */
         .mine { flex-direction: row-reverse; }
+        .mine .msg-container { align-items: flex-end; }
         .mine .msg-content {
             background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
             color: white; border-bottom-right-radius: 4px;
         }
 
-        /* رسائل الآخرين */
+        .theirs .msg-container { align-items: flex-start; }
         .theirs .msg-content {
             background: white; color: #555;
             border-bottom-left-radius: 4px;
@@ -90,38 +87,42 @@
         .msg-avatar {
             width: 35px; height: 35px; border-radius: 50%;
             background-size: cover; background-position: center;
-            background-color: #fff; border: 2px solid white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #fff; border: 2px solid white; flex-shrink: 0;
         }
 
-        /* منطقة الكتابة */
         .chat-footer {
             padding: 15px; background: rgba(255, 255, 255, 0.8);
             display: flex; align-items: center; gap: 10px;
         }
         input {
             flex: 1; padding: 15px; border-radius: 30px; border: 2px solid #ffebf0;
-            background: white; color: #333; outline: none; transition: 0.3s;
+            background: white; color: #333; outline: none;
         }
-        input:focus { border-color: #ff758c; }
-        
         .send-btn {
             width: 50px; height: 50px; border-radius: 50%; border: none;
             background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
             color: white; font-size: 20px; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 10px rgba(255, 117, 140, 0.4);
         }
 
-        /* نافذة دخول الغرفة الخاصة */
+        /* نافذة الدخول والاسم */
         .modal {
             display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 100;
+            background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 100;
+            backdrop-filter: blur(5px);
         }
         .modal-content {
-            background: white; padding: 25px; border-radius: 20px; width: 80%; text-align: center;
+            background: white; padding: 30px; border-radius: 25px; width: 85%; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        .modal input { width: 100%; margin: 15px 0; border: 1px solid #ddd; }
+        .modal h3 { color: #d63384; margin-bottom: 20px; }
+        .modal input { width: 100%; margin: 10px 0 20px; border: 2px solid #ffebf0; }
+        
+        .welcome-btn {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            color: white; padding: 12px 30px; border: none; border-radius: 30px;
+            font-size: 16px; cursor: pointer; width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -139,21 +140,29 @@
             <div class="current-room-name" id="roomTitle">الغرفة: الرئيسية</div>
         </div>
 
-        <div class="chat-body" id="chatBox">
-            </div>
+        <div class="chat-body" id="chatBox"></div>
 
         <div class="chat-footer">
             <input type="text" id="msgInput" placeholder="اكتب رسالتك..." onkeypress="handleEnter(event)">
             <button class="send-btn" onclick="sendMsg()">➤</button>
         </div>
 
+        <div class="modal" id="loginModal" style="display: flex;">
+            <div class="modal-content">
+                <h3>🌸 أهلاً بك في الشات 🌸</h3>
+                <p>يرجى كتابة اسمك المستعار للدخول</p>
+                <input type="text" id="usernameInput" placeholder="اكتب اسمك هنا...">
+                <button class="welcome-btn" onclick="saveName()">دخول الشات</button>
+            </div>
+        </div>
+
         <div class="modal" id="privateModal">
             <div class="modal-content">
-                <h3>دخول غرفة خاصة 🔒</h3>
-                <p>اكتب اسم الغرفة (مثلاً: 55) وادخل انت وصديقك</p>
+                <h3>غرفة خاصة 🔒</h3>
+                <p>اكتب اسم الغرفة للدخول مع صديقك</p>
                 <input type="text" id="privateRoomInput" placeholder="اسم الغرفة">
-                <button class="room-btn active" onclick="joinPrivateRoom()">دخول</button>
-                <button class="room-btn" onclick="closeModal()" style="background:#eee; color:#666">إلغاء</button>
+                <button class="welcome-btn" onclick="joinPrivateRoom()">دخول</button>
+                <button class="room-btn" onclick="closeModal()" style="margin-top:10px; background:none; color:#666">إلغاء</button>
             </div>
         </div>
     </div>
@@ -178,8 +187,31 @@
         
         let currentRoom = 'general';
         let messagesRef = ref(db, 'rooms/general/messages');
-        let myId = localStorage.getItem('chatUserId') || 'user_' + Math.random().toString(36).substr(2, 9);
-        localStorage.setItem('chatUserId', myId);
+        let myId = localStorage.getItem('chatUserId');
+        if (!myId) {
+            myId = 'user_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('chatUserId', myId);
+        }
+
+        // اسم المستخدم
+        let myName = localStorage.getItem('chatUsername');
+
+        // التحقق من الاسم عند البدء
+        if (myName) {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        window.saveName = function() {
+            const nameInput = document.getElementById('usernameInput');
+            const name = nameInput.value.trim();
+            if (name) {
+                myName = name;
+                localStorage.setItem('chatUsername', name);
+                document.getElementById('loginModal').style.display = 'none';
+            } else {
+                alert("يرجى كتابة اسم!");
+            }
+        }
 
         window.switchRoom = function(roomName, btnElement) {
             if(btnElement) {
@@ -207,8 +239,14 @@
                     ? "https://cdn-icons-png.flaticon.com/512/4140/4140047.png"
                     : "https://cdn-icons-png.flaticon.com/512/4140/4140051.png";
 
+                // عرض الاسم فقط إذا لم تكن رسالتي (أو للكل حسب الرغبة) - هنا للكل
+                const displayName = msg.username ? msg.username : "زائر";
+
                 row.innerHTML = `
-                    <div class="msg-content">${msg.text}</div>
+                    <div class="msg-container">
+                        <div class="msg-name" style="text-align: ${isMine ? 'left' : 'right'}">${displayName}</div>
+                        <div class="msg-content">${msg.text}</div>
+                    </div>
                     <div class="msg-avatar" style="background-image: url('${avatarUrl}')"></div>
                 `;
 
@@ -223,7 +261,12 @@
             const input = document.getElementById("msgInput");
             const text = input.value;
             if (text.trim() !== "") {
-                push(messagesRef, { text: text, senderId: myId, timestamp: Date.now() });
+                push(messagesRef, { 
+                    text: text, 
+                    senderId: myId, 
+                    username: myName, // إرسال الاسم مع الرسالة
+                    timestamp: Date.now() 
+                });
                 input.value = "";
             }
         }
