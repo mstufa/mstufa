@@ -3,279 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حظك اليوم - صوفي عماره</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>حظك الملكي - صوفي عماره</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@1,700&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             height: 100vh;
-            display: flex;
+            display: flex; /* هذا يخليه بالوسط */
             justify-content: center;
             align-items: center;
-            /* خلفية ملونة ومتحركة */
-            background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+            font-family: 'Amiri', serif;
+            color: #d4af37; /* ذهبي */
             overflow: hidden;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* خلفية متحركة */
+        body::before {
+            content: ""; position: absolute; width: 200%; height: 200%;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.2; animation: moveStars 120s linear infinite;
         }
+        @keyframes moveStars { from { transform: translateY(0); } to { transform: translateY(-50%); } }
 
-        .card {
-            background: rgba(255, 255, 255, 0.9);
-            width: 95%;
-            max-width: 600px; /* كبرت العرض */
-            padding: 40px 25px;
-            border-radius: 30px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        .royal-card {
             position: relative;
+            width: 90%; /* عرض كبير للموبايل */
+            max-width: 600px; /* حد أقصى للشاشات الكبيرة */
+            padding: 50px 30px; /* حواشي داخلية أكبر */
+            background: rgba(20, 20, 20, 0.85);
+            border: 3px solid #d4af37; /* إطار أسمك */
+            border-radius: 25px;
+            text-align: center;
+            /* ظل وإضاءة أقوى */
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.3), inset 0 0 60px rgba(0,0,0,0.9);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.5);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
         }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 15px;
-        }
-
-        .header h1 {
-            margin: 0;
-            color: #333;
-            font-size: 24px;
-            font-weight: 900;
-        }
-
-        .date-badge {
-            background: #f0f2f5;
-            color: #666;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 14px;
-            font-weight: bold;
+        /* عنوان */
+        h1 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 36px; /* خط أكبر */
+            margin: 0 0 25px;
+            background: linear-gradient(to bottom, #ffd700, #bf953f);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
         }
 
         /* أزرار الأقسام */
-        .tabs {
-            display: flex;
-            background: #f0f2f5;
-            padding: 5px;
-            border-radius: 20px;
-            gap: 5px;
+        .category-tabs {
+            display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;
         }
-
-        .tab-btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 15px;
-            background: transparent;
-            color: #666;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
+        .cat-btn {
+            background: transparent; border: 2px solid #d4af37; color: #d4af37;
+            padding: 12px 25px; /* أزرار أكبر */
+            border-radius: 25px; cursor: pointer;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 16px; /* خط أكبر */
             transition: 0.3s;
+            font-weight: bold;
+        }
+        .cat-btn.active, .cat-btn:hover {
+            background: #d4af37; color: #000; box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
         }
 
-        .tab-btn.active {
-            background: white;
-            color: #e73c7e;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        /* صندوق الشعر الكبير */
-        .poem-area {
-            min-height: 200px; /* كبرت الطول */
-            background: #fff5f8;
-            border-radius: 20px;
-            border: 2px dashed #ffc1e3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            margin: 10px 0;
+        /* مكان الشعر */
+        .poem-container {
+            min-height: 200px; /* صندوق أطول */
+            display: flex; align-items: center; justify-content: center;
+            margin: 20px 0 35px;
+            padding: 30px;
+            border-top: 2px solid rgba(212, 175, 55, 0.4);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.4);
+            background: rgba(0, 0, 0, 0.5); border-radius: 15px;
         }
 
         .poem-text {
-            font-size: 26px; /* خط كبير */
-            line-height: 1.8;
-            color: #444;
+            font-size: 24px; /* خط شعر أكبر */
+            line-height: 2.2;
+            color: #fff;
+            text-shadow: 2px 2px 4px black;
             font-weight: bold;
             white-space: pre-line;
         }
 
-        /* الأزرار السفلية */
-        .actions {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
+        /* زر الحظ */
         .main-btn {
-            flex: 2;
-            padding: 15px;
-            font-size: 20px;
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728);
             border: none;
-            border-radius: 20px;
-            background: linear-gradient(45deg, #e73c7e, #ee7752);
-            color: white;
+            padding: 18px 60px; /* زر رئيسي ضخم */
+            font-size: 22px; /* خط أكبر */
             font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(231, 60, 126, 0.4);
-            transition: transform 0.2s;
+            color: #1a1a1a; border-radius: 60px; cursor: pointer;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Reem Kufi', sans-serif;
+        }
+        .main-btn:hover { box-shadow: 0 0 50px rgba(212, 175, 55, 0.8); }
+        .main-btn:active { transform: scale(0.95); }
+
+        .footer {
+            margin-top: 30px; font-size: 16px; color: #aaa;
+            font-family: 'Reem Kufi', sans-serif; letter-spacing: 1px;
         }
 
-        .icon-btn {
-            flex: 1;
-            padding: 15px;
-            font-size: 20px;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            color: white;
-            font-weight: bold;
-            transition: transform 0.2s;
-            display: flex; align-items: center; justify-content: center; gap: 5px;
-        }
-
-        .copy-btn { background: #333; }
-        .whatsapp-btn { background: #25D366; }
-
-        .main-btn:active, .icon-btn:active { transform: scale(0.95); }
-
-        .footer { font-size: 14px; color: #888; margin-top: 10px; }
-
-        /* رسالة النسخ */
-        .toast {
-            position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
-            background: #333; color: white; padding: 10px 20px;
-            border-radius: 30px; font-size: 14px; opacity: 0; transition: 0.3s;
-            pointer-events: none;
-        }
+        /* زخرفة الزوايا */
+        .corner { position: absolute; width: 40px; height: 40px; border: 3px solid #d4af37; pointer-events: none; }
+        .tr { top: 15px; right: 15px; border-left: 0; border-bottom: 0; }
+        .tl { top: 15px; left: 15px; border-right: 0; border-bottom: 0; }
+        .br { bottom: 15px; right: 15px; border-left: 0; border-top: 0; }
+        .bl { bottom: 15px; left: 15px; border-right: 0; border-top: 0; }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="toast" id="toastMsg">تم نسخ النص بنجاح ✅</div>
+    <div class="royal-card">
+        <div class="corner tr"></div><div class="corner tl"></div>
+        <div class="corner br"></div><div class="corner bl"></div>
 
-        <div class="header">
-            <h1>✨ حظك اليوم</h1>
-            <div class="date-badge" id="dateBadge">التاريخ</div>
+        <h1>✨ حظك اليوم ✨</h1>
+
+        <div class="category-tabs">
+            <button class="cat-btn active" onclick="setCategory('iraqi', this)">شعر عراقي</button>
+            <button class="cat-btn" onclick="setCategory('abuthiya', this)">أبوذية</button>
+            <button class="cat-btn" onclick="setCategory('bayat', this)">بيات</button>
         </div>
 
-        <div class="tabs">
-            <button class="tab-btn active" onclick="setCategory('iraqi', this)">شعر عراقي</button>
-            <button class="tab-btn" onclick="setCategory('love', this)">غزل وحب</button>
-            <button class="tab-btn" onclick="setCategory('sad', this)">عتاب وحزن</button>
+        <div class="poem-container">
+            <div id="poemArea" class="poem-text">
+                اختر القسم واضغط الزر لكشف الحظ...
+            </div>
         </div>
 
-        <div class="poem-area">
-            <div class="poem-text" id="poemText">اضغط الزر وشوف حظك 😉</div>
-        </div>
+        <button class="main-btn" onclick="getPoem()">✨ اكشف حظي ✨</button>
 
-        <div class="actions">
-            <button class="main-btn" onclick="getPoem()">✨ اكشف حظي</button>
-        </div>
-        <div class="actions">
-            <button class="icon-btn copy-btn" onclick="copyText()">نسخ 📋</button>
-            <button class="icon-btn whatsapp-btn" onclick="shareWhatsapp()">واتساب 💚</button>
-        </div>
-
-        <div class="footer">تصميم وتطوير: صوفي عماره 👑</div>
+        <div class="footer">⚜️ تصميم: صوفي عماره ⚜️</div>
     </div>
 
     <script>
-        // ضع هنا التاريخ
-        const date = new Date();
-        document.getElementById('dateBadge').innerText = date.toLocaleDateString('ar-IQ');
-
+        // قاعدة بيانات الأشعار
         const poemsDB = {
             iraqi: [
                 "كون الخرسه تحجي وتنشرح لنسان\nجا كتلك احبك يا اعز انسان",
                 "أعتب والوم الروح والقلب مجروح\nمن تبتعد عني تطلع ترى الروح",
                 "مو ميت عدل واكف بالتابوت\nلان مشتاكلك وتمنه بس الموت",
                 "تعال شبيك هزني الشوك\nما ظل صبر بية",
-                "اثاري العشك موش تكلب وتختار\nمثل الموت هم كل واحد ويومه"
+                "اثاري العشك موش تكلب وتختار\nمثل الموت هم كل واحد ويومه",
+                "غيمت عيني عليك تمطر بواجي\nكلي شلذت دنياي وانته ما تجي"
             ],
-            love: [
-                "أحبك حبين حب الهوى\nوحباً لأنك أهل لذاكا",
-                "يا روحي شبيج، عوفي الحزن،\nهو الراح لو بي خير ما راح!",
-                "انته النفس والروح وانته حياتي\nيا اغلى من بالكون يا ذكرياتي",
-                "شحلاتك من تمر عالبال\nتاخذ حيلنه وتروح"
+            abuthiya: [
+                "أسير وحاير بدربي .. وعداي\nعلي شمتوا صحباني .. وعداي\nبجيت ولا محب نشف .. وعداي\nبجيت وظل شامت يلوم بية",
+                "حبيبي شكثر عذبني .. ومرمر\nوشربت من جفه حنظل .. ومرمر\nتمنيتك تمر يمي .. ومر مر\nوتشوف شصار ببعادك علية",
+                "أون ونة يتيم بصوت ... مبحوح\nبسبب لن الظهر مكسور ... مبحوح\nكلبي ما يبوح السر ... مابوح\nأخاف اعداي تتشمت علية",
+                "سهم هجرك دخل كلبي .. وصابة\nعليل وطال بفركاك .. صابة\nسألني الما درة بقصتي .. وصابة\nكلت هجرك كطع شوف العين بية"
             ],
-            sad: [
-                "أسير وحاير بدربي .. وعداي\nعلي شمتوا صحباني .. وعداي",
+            bayat: [
                 "ونيت ونة ما ونها .. المريض المعلعل\nعافوني وحدي ومشو .. ربعي ولا واحد سأل",
+                "يا دار وين الاهل .. شو بس ترابج بقى\nجنت اطب بيج بستر .. هسة اطب بجي ونعي",
                 "هم جرح، هم دمعة .. هم حسرة وتعب\nليش اليحب بصدك .. تاليه بس العتب",
                 "على فراك النحبهم .. حيل ونيت\nوتمنيت المنايا .. ولا تمنيت"
             ]
         };
 
-        let currentCategory = 'iraqi';
-        let currentPoem = "";
+        let currentCategory = 'iraqi'; // القسم الافتراضي
 
         function setCategory(type, btn) {
             currentCategory = type;
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            // تغيير لون الأزرار
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
-            const area = document.getElementById('poemText');
+
+            // رسالة توضيحية
+            const area = document.getElementById('poemArea');
             area.style.opacity = 0;
             setTimeout(() => {
-                area.innerText = "تم اختيار: " + btn.innerText + "\nاضغط للكشف 👇";
-                area.style.opacity = 1;
-            }, 200);
-        }
-
-        function getPoem() {
-            const area = document.getElementById('poemText');
-            const list = poemsDB[currentCategory];
-
-            // تأثير حركي
-            area.style.transform = "scale(0.8)";
-            area.style.opacity = 0;
-            
-            setTimeout(() => {
-                const randomIndex = Math.floor(Math.random() * list.length);
-                currentPoem = list[randomIndex];
-                area.innerText = currentPoem;
-                
-                area.style.transform = "scale(1)";
+                area.innerText = "تم اختيار: " + btn.innerText + "\nاضغط الزر للكشف";
                 area.style.opacity = 1;
             }, 300);
         }
 
-        function copyText() {
-            if(!currentPoem) return alert("اكشف الحظ اولاً!");
-            navigator.clipboard.writeText(currentPoem);
-            
-            // إظهار رسالة النجاح
-            const toast = document.getElementById('toastMsg');
-            toast.style.opacity = 1;
-            toast.style.top = "50px";
-            setTimeout(() => {
-                toast.style.opacity = 0;
-                toast.style.top = "20px";
-            }, 2000);
-        }
+        function getPoem() {
+            const area = document.getElementById('poemArea');
+            const list = poemsDB[currentCategory];
 
-        function shareWhatsapp() {
-            if(!currentPoem) return alert("اكشف الحظ اولاً!");
-            const text = encodeURIComponent("شوف شنو طلع لي بحظك اليوم من شات صوفي عماره:\n\n" + currentPoem);
-            window.open(`https://wa.me/?text=${text}`, '_blank');
+            area.style.opacity = 0;
+            area.style.transform = "scale(0.95)";
+            area.style.transition = "all 0.4s ease";
+
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * list.length);
+                area.innerText = list[randomIndex];
+                
+                area.style.opacity = 1;
+                area.style.transform = "scale(1)";
+            }, 400);
         }
     </script>
 
