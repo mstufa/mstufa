@@ -3,137 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حظك شعرياً - صوفي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <title>حظك الملكي 👑</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@1,700&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
     <style>
+        * { box-sizing: border-box; }
+
         body {
             margin: 0;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #2c3e50;
-            background-image: url('https://www.transparenttextures.com/patterns/black-linen.png');
+            background: radial-gradient(circle at center, #2b2b2b 0%, #000000 100%);
             font-family: 'Amiri', serif;
-            color: white;
+            color: #d4af37; /* لون ذهبي */
             overflow: hidden;
         }
 
-        .card {
-            background: #fff;
+        /* خلفية نجوم متحركة خفيفة */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.3;
+            animation: moveStars 100s linear infinite;
+        }
+
+        @keyframes moveStars { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+
+        .royal-card {
+            position: relative;
             width: 90%;
-            max-width: 400px;
-            padding: 30px;
+            max-width: 420px;
+            padding: 40px 20px;
+            background: rgba(20, 20, 20, 0.8);
+            border: 2px solid #d4af37; /* إطار ذهبي */
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            position: relative;
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
-            color: #333;
-            border: 5px double #8e44ad; /* إطار مزدوج فخم */
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), inset 0 0 50px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
         }
 
-        /* زخرفة بسيطة */
-        .card::before {
-            content: '❝';
-            font-size: 60px;
-            color: #8e44ad;
-            opacity: 0.2;
+        /* زوايا زخرفية */
+        .corner {
             position: absolute;
-            top: -10px;
-            right: 20px;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #d4af37;
+            transition: 0.3s;
         }
+        .top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+        .top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+        .bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+        .bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
 
         h1 {
-            color: #8e44ad;
-            margin-bottom: 20px;
-            font-size: 28px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #d4af37;
+            background: linear-gradient(to bottom, #ffd700, #bf953f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .poem-box {
-            min-height: 120px;
+        .divider {
+            font-size: 20px;
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+
+        .poem-container {
+            min-height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            margin: 20px 0;
+            padding: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .poem-text {
+            font-size: 22px;
             line-height: 1.8;
-            font-weight: bold;
-            color: #444;
-            margin-bottom: 30px;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            padding: 20px 0;
+            color: #fff;
+            text-shadow: 1px 1px 2px black;
+            font-style: italic;
         }
 
         button {
-            background: linear-gradient(45deg, #8e44ad, #c0392b);
-            color: white;
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728);
             border: none;
-            padding: 12px 30px;
+            padding: 15px 40px;
             font-size: 18px;
+            font-weight: bold;
+            color: #1a1a1a;
             border-radius: 50px;
             cursor: pointer;
-            font-family: 'Amiri', serif;
-            box-shadow: 0 5px 15px rgba(142, 68, 173, 0.4);
-            transition: transform 0.2s;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Reem Kufi', sans-serif;
         }
 
-        button:active {
-            transform: scale(0.95);
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
         }
 
-        /* توقيع */
+        button:active { transform: scale(0.95); }
+
         .footer {
-            margin-top: 15px;
+            margin-top: 20px;
             font-size: 12px;
             color: #888;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>✨ حظك شعرياً ✨</h1>
-        
-        <div class="poem-box" id="poemArea">
-            اضغط الزر وشوف شنو البيت اللي يطلع لك... 📜
+    <div class="royal-card">
+        <div class="corner top-right"></div>
+        <div class="corner top-left"></div>
+        <div class="corner bottom-right"></div>
+        <div class="corner bottom-left"></div>
+
+        <div class="divider">⚜️</div>
+        <h1>حظك الملكي</h1>
+        <div class="divider">⚜️</div>
+
+        <div class="poem-container">
+            <div id="poemArea" class="poem-text">
+                اضغط الزر لترى ما تخبئه لك الأبيات...
+            </div>
         </div>
 
-        <button onclick="getPoem()">اقرأ حظي</button>
+        <button onclick="getPoem()">✨ اكشف حظي ✨</button>
 
-        <div class="footer">تصميم: صوفي عماره</div>
+        <div class="footer">DESIGNED BY MUSTAFA</div>
     </div>
 
     <script>
-        // هنا قائمة الأشعار - تكدر تضيف بكيفك
         const poems = [
-            "أعتب والوم الروح ... والقلب مجروح<br>من تبتعد عني ... تطلع ترى الروح",
-            "مو ميت عدل .. واكف بالتابوت<br>لان مشتاكلك .. وتمنه بس الموت",
-            "شجاك وما كمت تشتاك ... هو الشوك شيكلفك؟",
-            "كون الخرسه تحجي وتنشرح لنسان<br>جا كتلك احبك يا اعز انسان",
-            "أثاري العشك موش تكلب وتختار<br>مثل الموت هم كل واحد ويومه",
-            "عله فراكك بجينه بدمع .. مو دمع دم<br>وقهر فوك القهر .. و هم يتبع هم",
-            "تعال شبيك هزني الشوك ... ما ظل صبر بية",
-            "يا روحي شبيج، عوفي الحزن،<br>هو الراح لو بي خير ما راح!",
-            "غيمت عيني عليك تمطر بواجي<br>كلي شلذت دنياي وانته ما تجي؟",
-            "لا تظن يوم أنساك .. يا أغلى الأحباب<br>طيفك يمر عالبال .. ويدكة بالباب",
-            "مشتاقلك كد النفس ... والله يعلم",
-            "الكلب لو ينساك ... من صدري اشلعه"
+            "لا تشك للناس جرحاً أنت صاحبه<br>لا يؤلم الجرح إلا من به ألمُ",
+            "أغرك مني أن حبك قاتلي<br>وأنك مهما تأمري القلب يفعلِ",
+            "وما كنت ممن يدخل العشق قلبه<br>ولكن من يبصر جفونك يعشقِ",
+            "أحبك حبين حب الهوى<br>وحباً لأنك أهل لذاكا",
+            "نعيب زماننا والعيب فينا<br>وما لزماننا عيب سوانا",
+            "كن بلسماً إن صار دهرك أرقما<br>وحلاوة إن صار غيرك علقما",
+            "يا واهب الصبر.. صبّرني على بعدها<br>إن كان في بعدها.. راح ومسرات",
+            "دع الأيام تفعل ما تشاء<br>وطب نفساً إذا حكم القضاء",
+            "إذا المرء لا يرعاك إلا تكلفاً<br>فدعه ولا تكثر عليه التأسفا",
+            "سلام على الدنيا إذا لم يكن بها<br>صديق صدوق صادق الوعد منصفا",
+            "أنتَ النعيمُ لقلبي والعذابُ لهُ<br>فما أمرّك في قلبي وأحلاكا",
+            "عجبتُ لمنكٍر عجزاً وحباً<br>وأعجبُ من محبٍ لا يبوحُ"
         ];
 
         function getPoem() {
             const area = document.getElementById('poemArea');
+            const btn = document.querySelector('button');
             
-            // تأثير اختفاء بسيط قبل ظهور الجديد
+            // تأثير اختفاء
             area.style.opacity = 0;
+            area.style.transform = "translateY(10px)";
+            area.style.transition = "all 0.5s ease";
             
+            // تدوير الزر قليلاً
+            btn.style.transform = "rotate(2deg)";
+            setTimeout(() => btn.style.transform = "rotate(0deg)", 200);
+
             setTimeout(() => {
-                // اختيار شعر عشوائي
                 const randomIndex = Math.floor(Math.random() * poems.length);
                 area.innerHTML = poems[randomIndex];
+                
+                // تأثير ظهور
                 area.style.opacity = 1;
-            }, 300);
+                area.style.transform = "translateY(0)";
+            }, 500);
         }
     </script>
 
