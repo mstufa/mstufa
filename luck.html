@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>حظك اليوم - صوفي عماره</title>
+    
+    <title>حظك اليوم - شعر عراقي 💎</title>
+
+    <meta name="description" content="إكشف حظك اليوم مع أجمل أبيات الشعر العراقي. دارمي، ابوذية، غزل، عتاب، وشعر شعبي. موقع ترفيهي من تصميم صوفي عماره.">
+    <meta name="keywords" content="حظك اليوم, شعر عراقي, ابوذيات, دارمي, ومضات, شعر شعبي, صوفي عماره, قفشات شعرية, حظك شعر">
+    <meta name="author" content="Mustafa">
+    <meta name="robots" content="index, follow">
+
+    <meta name="google-site-verification" content="114TrNaUleL5DYyWmYYFRbupmCwiUYlmj3LGHK7u8HI" />
+
+    <meta property="og:title" content="💎 حظك اليوم - شعر عراقي 💎">
+    <meta property="og:description" content="اضغط وشوف شنو يطلع لك بيت شعر.. حظك اليوم بلمسة عراقية!">
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/1077/1077063.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;800&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
+    
     <style>
         * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; -webkit-tap-highlight-color: transparent; }
 
@@ -16,7 +30,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* خلفية بيضاء مع تدرج خفيف جداً وأنيق */
             background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
             overflow: hidden;
         }
@@ -25,23 +38,20 @@
             width: 90%; 
             max-width: 500px;
             height: auto;
-            max-height: 90vh; /* حتى لا يخرج عن الشاشة */
+            max-height: 90vh;
             background: #ffffff;
             border-radius: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 25px;
-            /* ظل ناعم جداً */
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             position: relative;
             border: 1px solid #fff;
         }
 
-        /* الرأس */
         h1 {
             font-size: 28px;
-            /* لون النص متدرج */
             background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -50,18 +60,17 @@
             font-family: 'Reem Kufi', sans-serif;
         }
 
-        /* حاوية الأزرار (صفوف مرتبة) */
         .buttons-grid {
             width: 100%;
             display: flex;
-            flex-wrap: wrap; /* يسمح بالنزول سطر جديد */
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 10px; /* مسافة بين الأزرار */
+            gap: 10px;
             margin-bottom: 20px;
         }
 
         .cat-btn {
-            flex: 1 1 30%; /* كل زر ياخذ ثلث المساحة تقريباً */
+            flex: 1 1 30%;
             padding: 10px 5px;
             background: #f4f6f8;
             color: #555;
@@ -76,16 +85,15 @@
         }
 
         .cat-btn.active {
-            background: #6a11cb; /* بنفسجي */
+            background: #6a11cb;
             color: white;
             box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
             transform: translateY(-2px);
         }
 
-        /* صندوق الشعر */
         .content-area {
             width: 100%;
-            flex: 1; /* يأخذ المساحة المتبقية */
+            flex: 1;
             min-height: 150px;
             display: flex;
             justify-content: center;
@@ -107,14 +115,12 @@
             white-space: pre-line;
         }
 
-        /* الزر الرئيسي */
         .main-btn {
             width: 100%;
             padding: 18px;
             font-size: 20px;
             border: none;
             border-radius: 20px;
-            /* تدرج جميل جداً */
             background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
             color: white;
             font-weight: 900;
@@ -125,7 +131,6 @@
         }
         .main-btn:active { transform: scale(0.98); }
 
-        /* أزرار الخدمات */
         .sub-actions {
             width: 100%;
             display: flex;
@@ -154,7 +159,6 @@
             font-family: 'Reem Kufi', sans-serif;
         }
         .footer span { color: #6a11cb; font-weight: bold; }
-
     </style>
 </head>
 <body>
@@ -189,7 +193,6 @@
     </div>
 
     <script>
-        // قاعدة البيانات (نفس الأشعار الكثيرة السابقة)
         const poemsDB = {
             iraqi: [
                 "كون الخرسه تحجي وتنشرح لنسان\nجا كتلك احبك يا اعز انسان",
@@ -203,13 +206,7 @@
                 "على فراك النحبهم .. حيل ونيت\nوتمنيت المنايا .. ولا تمنيت",
                 "هم جرح، هم دمعة .. هم حسرة وتعب\nليش اليحب بصدك .. تاليه بس العتب",
                 "شحلاتك من تمر عالبال\nتاخذ حيلنه وتروح",
-                "ارد انشد اهل الشوك والعدهم علوم\nهم مثلي نص الليل ما يكدر يكوم؟",
-                "عيوني من تشوفك .. تحتار شتكلک\nيا أحلى من الكمر .. فدوة اروحلك",
-                "يا روحي شبيج، عوفي الحزن،\nهو الراح لو بي خير ما راح!",
-                "الصاحب الزين تاج .. ينحط على الراس\nمو مثل بعض الناس .. خوة بس كلام",
-                "ما ظل عتب وياك عتبي على حظي\nالما كعد فد يوم وفرحلي كلبي",
-                "خويي وأخوي وعضيدي .. ورفعة الراس\nما بلكه مثلك خوي .. بين كل الناس",
-                "سلامي على الصاحب .. الما تغيره الايام\nيظل معدن ذهب .. وصافي نيه"
+                "ارد انشد اهل الشوك والعدهم علوم\nهم مثلي نص الليل ما يكدر يكوم؟"
             ],
             darmi: [
                 "شحلاتك من تمر عالبال .. تاخذ حيلنه وتروح",
